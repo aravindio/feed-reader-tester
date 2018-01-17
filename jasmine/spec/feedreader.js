@@ -38,10 +38,17 @@ $(function () {
       });
     });
 
-    /* TODO: Write a test that loops through each feed
-     * in the allFeeds object and ensures it has a name defined
-     * and that the name is not empty.
+    /* A test that loops through each feed in the allFeeds object
+     * and ensures it has a name defined and that the name is not empty.
      */
+    it('have feed names defined and not empty', function () {
+      allFeeds.forEach(function (feed) {
+        var feedName = feed.name;
+        expect(feedName).toBeDefined();
+        // Verify that feed names are not empty
+        expect(feedName).not.toBe('');
+      });
+    });
   });
 
   /* TODO: Write a new test suite named "The menu" */
