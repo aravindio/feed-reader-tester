@@ -26,26 +26,36 @@ $(function () {
       expect(allFeeds.length).not.toBe(0);
     });
 
-    /* A test that loops through each feed in the allFeeds object
-     * and ensures it has a URL defined and that the URL is not empty.
+    /* A test that loops through each feed in the allFeeds array
+     * and ensures:
+     * 1. it has a URL defined
+     * 2. the URL is of type string
+     * 3. the URL is not empty.
      */
-    it('have feed URLs defined and not empty', function () {
+    it('have feed URLs defined, of type string, & not empty', function () {
       allFeeds.forEach(function (feed) {
         var feedUrl = feed.url;
         expect(feedUrl).toBeDefined();
-        // Verify that feed urls are not empty
+        // Verify that feed url is of type string
+        expect(typeof feedUrl).toBe('string');
+        // Verify that feed url is not empty
         expect(feedUrl).not.toBe('');
       });
     });
 
-    /* A test that loops through each feed in the allFeeds object
-     * and ensures it has a name defined and that the name is not empty.
+    /* A test that loops through each feed in the allFeeds array
+     * and ensures:
+     * 1. it has a name defined
+     * 2. the name is of type string
+     * 3. the name is not empty
      */
-    it('have feed names defined and not empty', function () {
+    it('have feed names defined, of type string, & not empty', function () {
       allFeeds.forEach(function (feed) {
         var feedName = feed.name;
         expect(feedName).toBeDefined();
-        // Verify that feed names are not empty
+        // Verify that feed name is of type string
+        expect(typeof feedName).toBe('string');
+        // Verify that feed name is not empty
         expect(feedName).not.toBe('');
       });
     });
@@ -102,17 +112,21 @@ $(function () {
      * Remember, loadFeed() is asynchronous.
      */
     var oldFeed;
+    var oldTitle;
 
     beforeEach(function (done) {
       loadFeed(0, function () {
         oldFeed = $('.feed').html();
+        oldTitle = $('.header-title').text();
         loadFeed(1, function () { done(); });
       });
     });
 
     it('changes content when new feed is loaded', function () {
       var newFeed = $('.feed').html();
+      var newTitle = $('.header-title').text();
       expect(oldFeed).not.toBe(newFeed);
+      expect(oldTitle).not.toBe(newTitle);
     });
   });
 }());
