@@ -96,12 +96,11 @@ $(function () {
      * asynchronous done() function.
      */
     beforeEach(function (done) {
-      loadFeed(0, function () { done(); });
+      loadFeed(0, done);
     });
 
-    it('has at least one entry element', function (done) {
-      expect($('.entry').length).toBeGreaterThan(0);
-      done();
+    it('has at least one entry element', function () {
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
@@ -118,7 +117,7 @@ $(function () {
       loadFeed(0, function () {
         oldFeed = $('.feed').html();
         oldTitle = $('.header-title').text();
-        loadFeed(1, function () { done(); });
+        loadFeed(1, done);
       });
     });
 
